@@ -17,6 +17,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+def extract_and_log_main_error(raw_text: str):
+    main_error = None
+
+    for line in raw_text.splitlines():
+        if "ImportError" in line or "Traceback" in line:
+            main_error = line.strip()
+
+    if not main_error:
+        main_error = "No Python error found"
+
+    LOG_FILE.write_text(main_error, encoding="utf-8")
+    return main_error
+
 @app.get("/", response_class=HTMLResponse)
 def home():
     with open("frontend/index.html", "r", encoding="utf-8") as f:
@@ -25,7 +38,7 @@ def home():
 @app.get("/log", response_class=HTMLResponse)    
 def log():
     if LOG_FILE.exists():
-        return LOG_FILE.read_text(encoding="utf-8")
+        return extract_and_log_main_error(LOG_FILE.read_text(encoding="utf-8"))
     return "Log file not found"
     
 def normalize_phone(phone: str) -> str:
