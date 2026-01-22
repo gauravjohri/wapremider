@@ -10,7 +10,7 @@ print("NOW:", datetime.now())
 IST = ZoneInfo("Asia/Kolkata")
 
 now_ist = datetime.now(IST)
-
+print("NOW:", now_ist)
 
 while True:
     reminders = tasks.find({'reminder_time': {'$lte': now_ist}, 'status': 'pending'})
