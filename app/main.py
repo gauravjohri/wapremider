@@ -19,6 +19,10 @@ def home():
     with open("frontend/index.html", "r", encoding="utf-8") as f:
         return f.read()
     
+def log():
+    with open("wapreminder-worker.log", "r", encoding="utf-8") as f:
+        return f.read()
+    
 def normalize_phone(phone: str) -> str:
     phone = phone.strip()              # remove spaces
     phone = phone.replace(" ", "")     # remove internal spaces
