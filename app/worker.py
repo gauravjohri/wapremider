@@ -9,10 +9,11 @@ print('Worker started...')
 print("NOW:", datetime.now())
 IST = ZoneInfo("Asia/Kolkata")
 
-now_ist = datetime.now(IST)
-print("NOW:", now_ist)
+
 
 while True:
+    now_ist = datetime.now(IST)
+    print("NOW:", now_ist)
     reminders = tasks.find({'reminder_time': {'$lte': now_ist}, 'status': 'pending'})
     for r in reminders:
         send_whatsapp(r['user_phone'], r['message'])
