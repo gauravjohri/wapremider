@@ -1,6 +1,13 @@
-
+# scripts & docs
 deploy.sh
 README.md
+
+# env files
 .env
-./app/_pycache__/
-./app/__init__.py
+
+# python
+__pycache__/
+*.pyc
+
+# app package files (NOT recommended, but per your request)
+app/__init__.py
