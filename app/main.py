@@ -4,13 +4,8 @@ from datetime import datetime
 from app.database import tasks
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
-
 LOG_FILE = Path("/root/wapreminder-worker.log")
 
-def log():
-    if LOG_FILE.exists():
-        return LOG_FILE.read_text(encoding="utf-8")
-    return "Log file not found"
 
 app = FastAPI(title="WhatsApp Reminder SaaS")
 
@@ -26,6 +21,12 @@ app.add_middleware(
 def home():
     with open("frontend/index.html", "r", encoding="utf-8") as f:
         return f.read()
+    
+@app.get("/log", response_class=HTMLResponse)    
+def log():
+    if LOG_FILE.exists():
+        return LOG_FILE.read_text(encoding="utf-8")
+    return "Log file not found"
     
 def normalize_phone(phone: str) -> str:
     phone = phone.strip()              # remove spaces
