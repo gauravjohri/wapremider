@@ -20,7 +20,7 @@ def home():
         return f.read()
     
 def log():
-    with open("wapreminder-worker.log ", "r", encoding="utf-8") as f:
+    with open("wapreminder-worker.log", "r", encoding="utf-8") as f:
         return f.read()
     
 def normalize_phone(phone: str) -> str:
