@@ -17,7 +17,6 @@ while True:
     print("NOW:", now_ist)
     reminders = tasks.find({'status': 'pending'})
     for r in reminders:
-        if r['reminder_time'].astimezone(IST) <= now_ist:
-            send_whatsapp(r['user_phone'], r['message'])
-            tasks.update_one({'_id': r['_id']}, {'$set': {'status': 'done'}})
+        send_whatsapp(r['user_phone'], r['message'])
+        tasks.update_one({'_id': r['_id']}, {'$set': {'status': 'done'}})
     time.sleep(60)
