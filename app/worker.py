@@ -7,7 +7,6 @@ from zoneinfo import ZoneInfo
 
 print('Worker started...')
 print("NOW:", datetime.now())
-print("UTC NOW:", datetime.now(timezone.ist))
 now_ist = datetime.now(ZoneInfo("Asia/Kolkata"))
 print("IST NOW:", now_ist)
 
