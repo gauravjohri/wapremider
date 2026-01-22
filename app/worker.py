@@ -17,6 +17,7 @@ while True:
     print("NOW:", now_ist)
     reminders = tasks.find({'status': 'pending'})
     for r in reminders:
+        print("Checking reminder:", r)
         send_whatsapp(r['user_phone'], r['message'])
         tasks.update_one({'_id': r['_id']}, {'$set': {'status': 'done'}})
-    time.sleep(60)
+    time.sleep(10)
