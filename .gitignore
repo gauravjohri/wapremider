@@ -2,5 +2,5 @@
 deploy.sh
 README.md
 .env
-_pycache__/
-__init__.py
+app/_pycache__/
+app/__init__.py
