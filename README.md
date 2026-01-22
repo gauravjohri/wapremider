@@ -1,7 +1,7 @@
-# WhatsApp Reminder SaaS
+# WhatsApp Reminder SaaS with Frontend
 
 Run API:
-uvicorn app.main:app --reload
+python -m uvicorn app.main:app --reload
 
 Run Worker:
 python app/worker.py

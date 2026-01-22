@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WhatsApp Reminder</title>
+<style>
+body{font-family:Arial;background:#f5f5f5}
+.box{max-width:400px;margin:50px auto;background:#fff;padding:20px;border-radius:8px}
+input,button{width:100%;padding:10px;margin-top:10px}
+button{background:#25D366;color:#fff;border:none}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>WhatsApp Reminder</h2>
+<input id="phone" placeholder="WhatsApp Number +91..." />
+<input id="msg" placeholder="Reminder Message" />
+<input id="time" type="datetime-local" />
+<button onclick="send()">Create Reminder</button>
+<p id="res"></p>
+</div>
+
+<script>
+function send(){
+fetch(`/create-reminder?phone=${phone.value}&message=${msg.value}&time=${time.value}`,
+{method:'POST'})
+.then(r=>r.json())
+.then(d=>res.innerText=d.message)
+}
+</script>
+</body>
+</html>
