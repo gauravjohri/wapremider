@@ -14,7 +14,7 @@ IST = ZoneInfo("Asia/Kolkata")
 while True:
     now_ist = datetime.now(IST)
     print("NOW:", now_ist)
-    reminders = tasks.find({'reminder_time': {'$lte': now_ist}, 'status': 'pending'})
+    reminders = tasks.find({'reminder_time': {'$lte': ISODate(now_ist)}, 'status': 'pending'})
     for r in reminders:
         send_whatsapp(r['user_phone'], r['message'])
         tasks.update_one({'_id': r['_id']}, {'$set': {'status': 'done'}})
