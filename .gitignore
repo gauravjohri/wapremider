@@ -1,0 +1,6 @@
+
+deploy.sh
+README.md
+.env
+_pycache__/
+__init__.py
