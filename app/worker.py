@@ -13,7 +13,7 @@ print("IST NOW:", now_ist)
 
 while True:
     now = datetime.now()
-    reminders = tasks.find({'reminder_time': {'$lte': now_ist}, 'status': 'pending'})
+    reminders = tasks.find({})
     for r in reminders:
         send_whatsapp(r['user_phone'], r['message'])
         tasks.update_one({'_id': r['_id']}, {'$set': {'status': 'done'}})
