@@ -4,8 +4,8 @@ from datetime import datetime
 from app.database import tasks
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
-OUT_LOG_FILE = Path("/root/worker.out.log")
-ERR_LOG_FILE = Path("/root/worker.err.log")
+OUT_LOG_FILE = Path("/root/wapremider/logs/worker.out.log")
+ERR_LOG_FILE = Path("/root/wapremider/logs/worker.err.log")
 
 
 app = FastAPI(title="WhatsApp Reminder SaaS")
