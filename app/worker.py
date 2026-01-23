@@ -21,4 +21,4 @@ while True:
             print("SENDING:", r['user_phone'])
             send_whatsapp(r['user_phone'], r['message'])
             tasks.update_one({'_id': r['_id']}, {'$set': {'status': 'done'}})
-    time.sleep(1)
+    time.sleep(60)
