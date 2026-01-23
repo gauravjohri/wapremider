@@ -17,7 +17,7 @@ while True:
     print("NOW:", now_ist)
     reminders = tasks.find({'status': 'pending'})
     for r in reminders:
-        print("now_ist:", now_ist,"reminder_time", r['reminder_time'].astimezone(IST))
+        print("now_ist:", now_ist,"reminder_time", r['reminder_time'])
         if r['reminder_time'].astimezone(IST) <= now_ist:
             print("SENDING:", r['user_phone'])
             send_whatsapp(r['user_phone'], r['message'])
