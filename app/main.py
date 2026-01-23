@@ -4,7 +4,8 @@ from datetime import datetime
 from app.database import tasks
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
-LOG_FILE = Path("/root/wapreminder-worker.log")
+OUT_LOG_FILE = Path("/root/worker.out.log")
+ERR_LOG_FILE = Path("/root/worker.err.log")
 
 
 app = FastAPI(title="WhatsApp Reminder SaaS")
@@ -27,7 +28,7 @@ def extract_and_log_main_error(raw_text: str):
     if not main_error:
         main_error = "No Python error found"
 
-    LOG_FILE.write_text(main_error, encoding="utf-8")
+    ERR_LOG_FILE.write_text(main_error, encoding="utf-8")
     return main_error
 
 @app.get("/", response_class=HTMLResponse)
@@ -37,8 +38,14 @@ def home():
     
 @app.get("/log", response_class=HTMLResponse)    
 def log():
-    if LOG_FILE.exists():
-        return extract_and_log_main_error(LOG_FILE.read_text(encoding="utf-8"))
+    if ERR_LOG_FILE.exists():
+        return extract_and_log_main_error(ERR_LOG_FILE.read_text(encoding="utf-8"))
+    return "Log file not found"
+
+@app.get("/log2", response_class=HTMLResponse)    
+def log():
+    if OUT_LOG_FILE.exists():
+        return OUT_LOG_FILE.read_text(encoding="utf-8")
     return "Log file not found"
     
 def normalize_phone(phone: str) -> str:
